@@ -10,6 +10,9 @@
 
 set -x
 
+rm -rvf package/admin/netdata
+svn co https://github.com/immortalwrt/packages/trunk/admin/netdata package/admin/netdata
+
 # Modify default IP
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
