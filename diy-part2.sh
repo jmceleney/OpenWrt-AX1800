@@ -10,8 +10,12 @@
 
 set -x
 
-rm -rvf package/admin/netdata
-svn co https://github.com/immortalwrt/packages/trunk/admin/netdata package/admin/netdata
+# rm -rvf package/admin/netdata
+# svn co https://github.com/immortalwrt/packages/trunk/admin/netdata package/admin/netdata
+grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
+rm -rvf feeds/packages/admin/netdata
+svn co https://github.com/immortalwrt/packages/trunk/admin/netdata feeds/packages/admin/netdata
+grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
 
 # Modify default IP
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
