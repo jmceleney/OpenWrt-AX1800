@@ -1,14 +1,20 @@
 # OpenWrt firmware for AX1800
 
-GitHub Actions build OpenWrt firmware for routers:
+GitHub Actions build OpenWrt firmware for :
 
 - Qihoo 360v6
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/lvii/OpenWrt-AX1800?style=for-the-badge&label=Download)](https://github.com/lvii/OpenWrt-AX1800/releases/latest)
 
-# reference
+## Thanks
 
 <https://github.com/coolsnowwolf/openwrt-gl-ax1800>
+
+<https://github.com/kenzok8/openwrt-packages>
+
+<https://github.com/kenzok8/small>
+
+<https://github.com/immortalwrt/packages>
 
 <https://github.com/P3TERX/OpenWrt-Newifi_D2>
 
@@ -16,8 +22,8 @@ GitHub Actions build OpenWrt firmware for routers:
 
 <https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/router-config/README.cn.md>
 
-1. 创建 `public_repo` (Access public repositories) 权限的 [**PAT (personal access token)**](https://docs.github.com/cn/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-2. 新建 repo secrets 变量，并将第一步创建的 [**PAT (personal access token)**](https://docs.github.com/cn/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 赋值给 repo secrets
+1. 创建 [**PAT (personal access token)**](https://docs.github.com/cn/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 赋予 `public_repo` (Access public repositories) 权限即可
+2. 新建 repo secrets **变量**，并将第一步创建的 [**PAT (personal access token)**](https://docs.github.com/cn/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 赋值给 repo secrets
 3. 设置 Github Actions 的 Workflow 具有 **读写权限 (Read and write permissions)**
 
 > [Fork 仓库并设置 GH_TOKEN](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/router-config/README.cn.md#3-fork-仓库并设置-gh_token)
