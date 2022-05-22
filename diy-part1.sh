@@ -17,3 +17,6 @@ echo '
 src-git kenzo https://github.com/kenzok8/openwrt-packages
 src-git small https://github.com/kenzok8/small' >>feeds.conf.default
 
+ls -lh package/utils/ucode
+svn co https://github.com/coolsnowwolf/lede/trunk/package/utils/ucode package/utils/ucode
+ls -lh package/utils/ucode
