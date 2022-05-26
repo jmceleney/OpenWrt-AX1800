@@ -17,17 +17,23 @@ rm -rvf feeds/packages/admin/netdata
 svn co https://github.com/immortalwrt/packages/trunk/admin/netdata feeds/packages/admin/netdata
 grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
 
+git clone --depth 1 https://github.com/aa65535/openwrt-chinadns.git package/chinadns
+git clone --depth 1 https://github.com/aa65535/openwrt-dns-forwarder.git package/dns-forwarder
+git clone --depth 1 https://github.com/aa65535/openwrt-dist-luci.git package/openwrt-dist-luci
+git clone --depth 1 https://github.com/shadowsocks/luci-app-shadowsocks.git package/luci-app-shadowsocks
+ls -lh package
+
 # Modify default IP
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # Modify hostname
-sed -i 's/OpenWrt/OpenWrt-AX1800/g' package/base-files/files/bin/config_generate
+sed -i 's/OpenWrt/AX1800/g' package/base-files/files/bin/config_generate
 
 # # Modify the version number
 # sed -i "s/OpenWrt /GitHub Actions Build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
 
 # Modify default theme
-sed -i 's/luci-theme-bootstrap/luci-theme-neobird/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
