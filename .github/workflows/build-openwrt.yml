@@ -104,6 +104,7 @@ jobs:
       id: compile
       run: |
         cd openwrt
+        egrep -i 'ipv6|ipt6|ip6|6c|6t' .config
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
