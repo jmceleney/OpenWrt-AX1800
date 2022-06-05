@@ -8,13 +8,13 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build Qihoo 360V6
+name: Build LINKSYS MR7350
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/openwrt-gl-ax1800
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: qihoo-360v6.config
+  CONFIG_FILE: linksys-mr7350.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -165,7 +165,7 @@ jobs:
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo -e "\n[coolsnowwolf openwrt-gl-ax1800](https://github.com/coolsnowwolf/openwrt-gl-ax1800) for Qihoo 360V6" >> release.txt
+        echo -e "\n[coolsnowwolf openwrt-gl-ax1800](https://github.com/coolsnowwolf/openwrt-gl-ax1800) for Linksys MR7350" >> release.txt
         echo "::set-output name=status::success"
 
     - name: Upload firmware to release
