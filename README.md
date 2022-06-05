@@ -1,12 +1,30 @@
 # OpenWrt firmware for AX1800
 
-GitHub Actions build OpenWrt firmware for :
-
-- Qihoo 360v6
-
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/lvii/OpenWrt-AX1800?style=for-the-badge&label=Download)](https://github.com/lvii/OpenWrt-AX1800/releases/latest)
 
+GitHub Actions build OpenWrt firmware for **(ONLY TESTING PURPOSE)**:
+
+- Redmi AX6
+  - base on [Boos4721 openwrt with QSDK and NSS firmware](https://github.com/Boos4721/openwrt)
+  - base on [robimarko openwrt ipq807x-5.15 with QSDK and NSS firmware](https://github.com/robimarko/openwrt/blob/ipq807x-5.15)
+- Qihoo 360v6
+
+## packages
+
+    htop
+    tmux
+    ttyd
+    rsync
+    netcat
+    bind-dig
+
 ## Thanks
+
+<https://github.com/robimarko/openwrt/tree/ipq807x-5.15>
+
+<https://github.com/robimarko/nss-packages>
+
+<https://github.com/Boos4721/openwrt>
 
 <https://github.com/coolsnowwolf/openwrt-gl-ax1800>
 

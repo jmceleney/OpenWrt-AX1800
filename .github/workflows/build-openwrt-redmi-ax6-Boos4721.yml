@@ -8,13 +8,13 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build AX6 robimarko
+name: Build AX6 Boos4721
 
 env:
-  REPO_URL: https://github.com/robimarko/openwrt
-  REPO_BRANCH: ipq807x-5.15
+  REPO_URL: https://github.com/Boos4721/openwrt
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: redmi-ax6-robimarko-ipq807x-5.15.config
+  CONFIG_FILE: redmi-ax6-Boos4721.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -71,10 +71,10 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
+      run: cd openwrt && ./scripts/feeds update -a -f
 
     - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
+      run: cd openwrt && ./scripts/feeds install -a -f
 
     - name: Load custom configuration
       run: |
@@ -165,7 +165,7 @@ jobs:
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo -e "\n[robimarko openwrt ipq807x-5.15](https://github.com/robimarko/openwrt/blob/ipq807x-5.15/) for Redmi AX6 with QSDK and NSS firmware" >> release.txt
+        echo -e "\n[Boos4721 OpenWrt](https://github.com/Boos4721/openwrt) for Redmi AX6 with QSDK and NSS firmware" >> release.txt
         echo "::set-output name=status::success"
 
     - name: Upload firmware to release
@@ -174,7 +174,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASES_TOKEN }}
       with:
-        name: ${{ steps.tag.outputs.release_date }} Redmi AX6 robimarko ipq807x-5.15
+        name: ${{ steps.tag.outputs.release_date }} Redmi AX6 Boos4721
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
