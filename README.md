@@ -22,6 +22,8 @@ GitHub Actions build OpenWrt firmware for **(ONLY TESTING PURPOSE)**:
 
 ## Thanks
 
+<https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem>
+
 <https://github.com/robimarko/openwrt/tree/ipq807x-5.15>
 
 <https://github.com/robimarko/nss-packages>
