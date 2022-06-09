@@ -6,7 +6,7 @@ GitHub Actions build OpenWrt firmware for **(ONLY TESTING PURPOSE)**:
 
 - Redmi AX6
   - base on [Boos4721 openwrt with QSDK and NSS firmware](https://github.com/Boos4721/openwrt)
-  - base on [robimarko openwrt ipq807x-5.15 with QSDK and NSS firmware](https://github.com/robimarko/openwrt/blob/ipq807x-5.15)
+  - base on [robimarko openwrt ipq807x-5.15 with QSDK and NSS firmware](https://github.com/robimarko/openwrt/tree/ipq807x-5.15)
 - Linksys MR7350
 - Qihoo 360v6
   - base on [coolsnowwolf openwrt-gl-ax1800](https://github.com/coolsnowwolf/openwrt-gl-ax1800)
