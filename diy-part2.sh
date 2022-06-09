@@ -10,6 +10,8 @@
 
 set -x
 
+CONFIG_FILE="$1"
+
 # rm -rvf package/admin/netdata
 # svn co https://github.com/immortalwrt/packages/trunk/admin/netdata package/admin/netdata
 grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
@@ -23,11 +25,16 @@ git clone --depth 1 https://github.com/aa65535/openwrt-dist-luci.git package/ope
 git clone --depth 1 https://github.com/shadowsocks/luci-app-shadowsocks.git package/luci-app-shadowsocks
 ls -lh package
 
-# Modify default IP
-# sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+if echo "$CONFIG_FILE"|grep -i robimarko
+then
+    # Modify default IP
+    sed -i 's/192.168.1.1/192.168.6.1/g' package/base-files/files/bin/config_generate
 
-# Modify hostname
-sed -i 's/OpenWrt/AX1800/g' package/base-files/files/bin/config_generate
+    # Modify hostname
+    sed -i 's/OpenWrt/robimarko/g' package/base-files/files/bin/config_generate
+else
+    sed -i 's/OpenWrt/AX1800/g' package/base-files/files/bin/config_generate
+fi
 
 # # Modify the version number
 # sed -i "s/OpenWrt /GitHub Actions Build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
