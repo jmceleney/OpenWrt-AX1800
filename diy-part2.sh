@@ -32,6 +32,14 @@ then
 
     # Modify hostname
     sed -i 's/OpenWrt/robimarko/g' package/base-files/files/bin/config_generate
+elif echo "$CONFIG_FILE"|grep -i GL-SFT1200
+then
+    sed -i '/DISTRIB_REVISION/d' package/base-files/files/etc/openwrt_release
+    echo "DISTRIB_REVISION=' GL-iNet Inc'" >> package/base-files/files/etc/openwrt_release
+    sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
+    echo "DISTRIB_DESCRIPTION='OpenWrt R$(date +%y.%m.%d) '" >> package/base-files/files/etc/openwrt_release
+    sed -i 's/192.168.1.1/192.168.8.1/' package/base-files/files/bin/config_generate
+    sed -i 's/OpenWrt/GL-SFT1200/' package/base-files/files/bin/config_generate
 else
     sed -i 's/OpenWrt/AX1800/g' package/base-files/files/bin/config_generate
 fi
@@ -40,7 +48,12 @@ fi
 # sed -i "s/OpenWrt /GitHub Actions Build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
 
 # Modify default theme
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+if echo "$CONFIG_FILE"|grep -i GL-SFT1200
+then
+    sed -i 's/luci-theme-bootstrap/luci-theme-argonv3/g' feeds/luci/collections/luci/Makefile
+else
+    sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+fi
 
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
