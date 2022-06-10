@@ -12,12 +12,12 @@ set -x
 
 CONFIG_FILE="$1"
 
-# rm -rvf package/admin/netdata
-# svn co https://github.com/immortalwrt/packages/trunk/admin/netdata package/admin/netdata
-grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
-rm -rvf feeds/packages/admin/netdata
-svn co https://github.com/immortalwrt/packages/trunk/admin/netdata feeds/packages/admin/netdata
-grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
+# # rm -rvf package/admin/netdata
+# # svn co https://github.com/immortalwrt/packages/trunk/admin/netdata package/admin/netdata
+# grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
+# rm -rvf feeds/packages/admin/netdata
+# svn co https://github.com/immortalwrt/packages/trunk/admin/netdata feeds/packages/admin/netdata
+# grep '^PKG_VERSION' feeds/packages/admin/netdata/Makefile
 
 git clone --depth 1 https://github.com/aa65535/openwrt-chinadns.git package/chinadns
 git clone --depth 1 https://github.com/aa65535/openwrt-dns-forwarder.git package/dns-forwarder

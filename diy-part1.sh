@@ -10,13 +10,20 @@
 
 set -x
 
-# https://github.com/coolsnowwolf/openwrt-gl-ax1800/blob/master/feeds.conf.default
-# https://github.com/kenzok8/openwrt-packages
-# https://github.com/kenzok8/small
-echo '
+CONFIG_FILE="$1"
+
+if echo "$CONFIG_FILE"|grep -i GL-SFT1200
+then
+    :
+else
+    # https://github.com/coolsnowwolf/openwrt-gl-ax1800/blob/master/feeds.conf.default
+    # https://github.com/kenzok8/openwrt-packages
+    # https://github.com/kenzok8/small
+    echo '
 src-git kenzo https://github.com/kenzok8/openwrt-packages
 src-git small https://github.com/kenzok8/small' >>feeds.conf.default
 
-ls -lh package/utils/ucode
-svn co https://github.com/coolsnowwolf/lede/trunk/package/utils/ucode package/utils/ucode
-ls -lh package/utils/ucode
+    ls -lh package/utils/ucode
+    svn co https://github.com/coolsnowwolf/lede/trunk/package/utils/ucode package/utils/ucode
+    ls -lh package/utils/ucode
+fi
