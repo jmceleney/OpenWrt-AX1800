@@ -116,14 +116,12 @@ jobs:
         egrep -i 'ipv6|ipt6|ip6|6c|6t' .config
         echo "__INFO: egrep -i '[-_](ipt|nft)' .config"
         egrep -i '[-_](ipt|nft)' .config
-        # make -j$(nproc) || make -j1 V=sb
-        # make -j$(nproc) V=s > build.log 2>&1
-        make -j$(nproc) || { make -j1 V=s > build.log 2>&1; }
+        # make -j$(nproc) || make -j1 V=s
+        make -j$(nproc) || { echo "__INFO: make -j1 V=s 2>&1 | tee build.log"; make -j1 V=s 2>&1 | tee build.log; }
         echo "__INFO: tail -n 5000 build.log"
         tail -n 5000 build.log
         echo "__INFO: tail -n 5000 build.log | egrep -C10 '(Collected errors|ERROR):'"
         tail -n 5000 build.log | egrep -C10 '(Collected errors|ERROR):'
-
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
