@@ -67,8 +67,9 @@ jobs:
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
+        ls -lhX --time-style=long-iso . openwrt
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        $GITHUB_WORKSPACE/$DIY_P1_SH "$CONFIG_FILE"
         sed 's/src-git-full/src-git/g' feeds.conf.default
         sed -i 's/src-git-full/src-git/g' feeds.conf.default
 
@@ -83,7 +84,9 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
+        ls -lhX --time-style=long-iso . openwrt
         cd openwrt
+        ls -lh
         $GITHUB_WORKSPACE/$DIY_P2_SH "$CONFIG_FILE"
 
     - name: SSH connection to Actions
@@ -96,6 +99,7 @@ jobs:
     - name: Download package
       id: package
       run: |
+        ls -lhX --time-style=long-iso . openwrt
         cd openwrt
         make defconfig
         make download -j8
@@ -105,15 +109,18 @@ jobs:
     - name: Compile the firmware
       id: compile
       run: |
+        ls -lhX --time-style=long-iso . openwrt
         cd openwrt
         echo "__INFO: run 'make -j$(nproc) V=s' with '$(nproc)' thread compile"
         echo "__INFO: egrep -i 'ipv6|ipt6|ip6|6c|6t|nft|ipt4' .config"
         egrep -i 'ipv6|ipt6|ip6|6c|6t' .config
         echo "__INFO: egrep -i '[-_](ipt|nft)' .config"
         egrep -i '[-_](ipt|nft)' .config
-        # make -j$(nproc) || make -j1 V=s
-        # make -j$(nproc) V=s 2>&1 | tee build.log
-        make -j$(nproc) V=s > build.log 2>&1
+        # make -j$(nproc) V=s > build.log 2>&1
+        make -j$(nproc) || { make -j1 V=s > build.log 2>&1; }
+        echo "__INFO: tail -n 5000 build.log"
+        tail -n 5000 build.log
+        echo "__INFO: tail -n 5000 build.log | egrep -C10 '(Collected errors|ERROR):'"
         tail -n 5000 build.log | egrep -C10 '(Collected errors|ERROR):'
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
