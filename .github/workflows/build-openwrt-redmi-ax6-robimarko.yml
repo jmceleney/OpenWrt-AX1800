@@ -113,7 +113,7 @@ jobs:
         egrep -i '[-_](ipt|nft)' .config
         # make -j$(nproc) || make -j1 V=s
         # make -j$(nproc) V=s 2>&1 | tee build.log
-        make -j$(nproc) V=s 2>&1 > build.log
+        make -j$(nproc) V=s > build.log 2>&1
         tail -n 5000 build.log | egrep -C10 '(Collected errors|ERROR):'
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
